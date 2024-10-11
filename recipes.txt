@@ -1,0 +1,43 @@
+Омлет
+3
+Яйцо | 2 | шт
+Молоко | 100 | мл
+Помидор | 2 | шт
+
+Утка по-пекински
+4
+Утка | 1 | шт
+Вода | 2 | л
+Мед | 3 | ст.л
+Соевый соус | 60 | мл
+
+Запеченный картофель
+3
+Картофель | 1 | кг
+Чеснок | 3 | зубч
+Сыр гауда | 100 | г
+
+Фахитос
+5
+Говядина | 500 | г
+Перец сладкий | 1 | шт
+Лаваш | 2 | шт
+Винный уксус | 1 | ст.л
+Помидор | 2 | шт
+
+
+cook_book = {}
+with open('recipes.txt', encoding='utf-8') as src_file:
+    last_key = ''
+    for line in src_file:
+        line = line.strip()
+        if line.isdigit():
+            continue
+        elif line and '|' not in line:
+            cook_book[line] = []
+            last_key = line
+        elif line and '|' in line:
+            name, qt, msure = line.split(" | ")
+            cook_book.get(last_key).append(dict(ingredient_name=name, quantity=int(qt), measure=msure))
+
+print(cook_book)
